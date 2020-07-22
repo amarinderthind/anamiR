@@ -78,8 +78,8 @@ heat_vis <- function(
   mirna_da <- mirna_21[, 1:(ncol(mirna_21)-5)]
   mrna_da <- mrna_d[, 1:(ncol(mrna_d)-5)]
 
-  mirna_exp <- mirna_da[mirna, ]
-  mrna_exp <- mrna_da[gene, ]
+  mirna_exp <- as.matrix(mirna_da[mirna, ])
+  mrna_exp <- as.matrix(mrna_da[gene, ])
 
   hmcols <- rev(gplots::redgreen(100));
 
