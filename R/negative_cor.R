@@ -94,12 +94,13 @@ negative_cor <- function(
       for (j in seq_len(nrow(data_2))) {
         mrna <- as.numeric(data_1[i, 1:(ncol(mrna_data) - 5)])
         mirna <- as.numeric(data_2[j, 1:(ncol(mirna_data) - 5)])
-        tmp <- stats::cor(mrna, mirna, method = method)
+        tmp <- stats::cor(mrna, mirna, method = method)   # tmp2 <- cor.test( mrna,mirna, method="pearson")
         #print(tmp)
         if (tmp < cor_cut) {
           corr[[n]] <- row.names(data_2)[j]
           corr[[n]][2] <- row.names(data_1)[i]
-          corr[[n]][3] <- tmp
+          corr[[n]][3] <- tmp                          #  corr[[n]][3] <- tmp2$estimate    ##correlation
+                                                       #corr[[n]][4] <- tmp2$p.value    ## significance of correltions
           corr[[n]][4] <- data_2[["log-ratio"]][j]
           corr[[n]][5] <- data_2[["P-adjust"]][j]
           corr[[n]][6] <- data_2[["mean_case"]][j]
